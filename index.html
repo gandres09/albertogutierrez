@@ -188,11 +188,35 @@ h2 { font-size: clamp(1.6rem, 3.8vw, 2.2rem); line-height: 1.15; letter-spacing:
 }
 .mailinfo { flex: 1 1 320px; min-width: 0; }
 .numhead .mi { width: 22px; height: 22px; border-radius: 0; color: var(--accent); }
+.addrline { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
 .maddr {
-  display: block; margin-top: 10px; color: var(--accent); font-weight: 600;
-  font-size: clamp(1rem, 4.4vw, 1.4rem); line-height: 1.3; overflow-wrap: anywhere;
+  display: block; flex: 1 1 auto; min-width: 0; color: var(--accent); font-weight: 600;
+  font-size: clamp(.92rem, 3.9vw, 1.4rem); line-height: 1.3; overflow-wrap: anywhere;
 }
 .mailrow .btn { flex: 0 0 auto; color: var(--ink); }
+.numline { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.numline .num { margin-top: 0; min-width: 0; overflow-wrap: anywhere; }
+.copy-btn {
+  appearance: none; flex: none; width: 40px; height: 40px; padding: 0; cursor: pointer;
+  display: grid; place-items: center;
+  background: transparent; color: var(--muted);
+  border: 1px solid var(--line); border-radius: 6px;
+}
+.copy-btn:hover { color: var(--accent); border-color: var(--accent); }
+.copy-btn .ic-check { display: none; }
+.copy-btn.done { color: var(--wa); border-color: var(--wa); }
+.copy-btn.done .ic-copy { display: none; }
+.copy-btn.done .ic-check { display: block; }
+.toast {
+  position: fixed; z-index: 10; left: 50%;
+  bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  background: var(--ink); color: var(--bg);
+  padding: 10px 20px; border-radius: 999px; font-weight: 600; font-size: .95rem;
+  box-shadow: 0 10px 24px var(--shadow);
+  opacity: 0; pointer-events: none; transition: opacity .15s ease;
+}
+.toast.show { opacity: 1; }
 
 footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
 .foot { display: flex; flex-wrap: wrap; gap: 20px 32px; align-items: center; justify-content: space-between; }
@@ -292,7 +316,7 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
       <div class="nums">
       <div class="numrow">
         <div class="numhead"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#fff"/><g fill="#75AADB"><rect y="2.667" width="36" height="2.667"/><rect y="8" width="36" height="2.667"/><rect y="13.333" width="36" height="2.667"/><rect y="18.667" width="36" height="2.667"/></g><rect width="10.667" height="10.667" fill="#fff"/><circle cx="5.333" cy="5.333" r="2.8" fill="#FCD116"/></svg><span data-i18n="cUy">Uruguay</span></div>
-        <p class="num">+598 91 771 466</p>
+        <div class="numline"><p class="num">+598 91 771 466</p><button type="button" class="copy-btn" data-copy="+598 91 771 466" data-i18n-label="copyLabel" aria-label="Copiar" title="Copiar"><svg class="ic-copy" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><svg class="ic-check" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></div>
         <div class="actions">
           <a class="btn" data-wa="uy" href="#contacto" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg><span>WhatsApp</span></a>
           <a class="btn ghost" href="tel:+59891771466"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span data-i18n="call">Llamar</span></a>
@@ -300,7 +324,7 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
       </div>
       <div class="numrow">
         <div class="numhead"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#009C3B"/><polygon points="18,2.5 33.5,12 18,21.5 2.5,12" fill="#FFDF00"/><circle cx="18" cy="12" r="5.6" fill="#002776"/></svg><span data-i18n="cBr">Brasil</span></div>
-        <p class="num">+55 53 99140-0708</p>
+        <div class="numline"><p class="num">+55 53 99140-0708</p><button type="button" class="copy-btn" data-copy="+55 53 99140-0708" data-i18n-label="copyLabel" aria-label="Copiar" title="Copiar"><svg class="ic-copy" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><svg class="ic-check" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></div>
         <div class="actions">
           <a class="btn" data-wa="br" href="#contacto" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg><span>WhatsApp</span></a>
           <a class="btn ghost" href="tel:+5553991400708"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span data-i18n="call">Llamar</span></a>
@@ -310,7 +334,7 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
       <div class="mailrow">
         <div class="mailinfo">
           <div class="numhead"><svg class="mi" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7l8.5 6.5L20.5 7"/></svg><span data-i18n="mailLabel">Correo electrónico</span></div>
-          <a class="maddr" href="mailto:documentacionaextranjeros2000@outlook.com">documentacionaextranjeros2000<wbr>@outlook.com</a>
+          <div class="addrline"><a class="maddr" href="mailto:documentacionaextranjeros2000@outlook.com">documentacionaextranjeros2000<wbr>@outlook.com</a><button type="button" class="copy-btn" data-copy="documentacionaextranjeros2000@outlook.com" data-i18n-label="copyLabel" aria-label="Copiar" title="Copiar"><svg class="ic-copy" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><svg class="ic-check" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></div>
         </div>
         <a class="btn ghost" href="mailto:documentacionaextranjeros2000@outlook.com"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7l8.5 6.5L20.5 7"/></svg><span data-i18n="mailBtn">Escribir un correo</span></a>
       </div>
@@ -352,6 +376,8 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
   </div>
 </footer>
 
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <a class="btn fab" data-wa href="#contacto" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg><span>WhatsApp</span></a>
 
 <script>
@@ -381,7 +407,9 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
       cUy: "Uruguay",
       cBr: "Brasil",
       mailLabel: "Correo electrónico",
-      mailBtn: "Escribir un correo"
+      mailBtn: "Escribir un correo",
+      copied: "Copiado",
+      copyLabel: "Copiar"
     },
     en: {
       brandSub: "Paperwork specialist",
@@ -404,7 +432,9 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
       cUy: "Uruguay",
       cBr: "Brazil",
       mailLabel: "Email",
-      mailBtn: "Send an email"
+      mailBtn: "Send an email",
+      copied: "Copied",
+      copyLabel: "Copy"
     },
     pt: {
       brandSub: "Despachante",
@@ -427,7 +457,9 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
       cUy: "Uruguai",
       cBr: "Brasil",
       mailLabel: "E-mail",
-      mailBtn: "Enviar e-mail"
+      mailBtn: "Enviar e-mail",
+      copied: "Copiado",
+      copyLabel: "Copiar"
     }
   };
 
@@ -438,6 +470,7 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
   };
 
   var SUPPORTED = ["es", "en", "pt"];
+  var curLang = "es";
 
   function detect() {
     var saved = null;
@@ -452,12 +485,19 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
   }
 
   function apply(lang) {
+    curLang = lang;
     var dict = T[lang];
     document.documentElement.lang = lang;
     var nodes = document.querySelectorAll("[data-i18n]");
     for (var i = 0; i < nodes.length; i++) {
       var k = nodes[i].getAttribute("data-i18n");
       if (dict[k] !== undefined) nodes[i].textContent = dict[k];
+    }
+    var labeled = document.querySelectorAll("[data-i18n-label]");
+    for (var q = 0; q < labeled.length; q++) {
+      var lbl = dict[labeled[q].getAttribute("data-i18n-label")] + " " + (labeled[q].getAttribute("data-copy") || "");
+      labeled[q].setAttribute("aria-label", lbl);
+      labeled[q].setAttribute("title", lbl);
     }
     var auto = lang === "pt" ? "br" : "uy";
     var links = document.querySelectorAll("[data-wa]");
@@ -474,6 +514,54 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
     for (var f = 0; f < flags.length; f++) {
       flags[f].setAttribute("aria-pressed", flags[f].getAttribute("data-lang") === lang ? "true" : "false");
     }
+  }
+
+  var toast = document.getElementById("toast");
+  var toastTimer = null;
+  var doneBtn = null;
+
+  function fallbackCopy(text) {
+    return new Promise(function (resolve, reject) {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.top = "0";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, text.length);
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta);
+      if (ok) resolve(); else reject();
+    });
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text).catch(function () { return fallbackCopy(text); });
+    }
+    return fallbackCopy(text);
+  }
+
+  var copyBtns = document.querySelectorAll(".copy-btn");
+  for (var c = 0; c < copyBtns.length; c++) {
+    copyBtns[c].addEventListener("click", function () {
+      var btn = this;
+      copyText(btn.getAttribute("data-copy")).then(function () {
+        if (doneBtn) doneBtn.classList.remove("done");
+        doneBtn = btn;
+        btn.classList.add("done");
+        toast.textContent = T[curLang].copied;
+        toast.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toast.classList.remove("show");
+          btn.classList.remove("done");
+        }, 1500);
+      }, function () {});
+    });
   }
 
   var flags = document.querySelectorAll(".flag");
