@@ -7,55 +7,62 @@
 <title>Alberto Gutiérrez, gestor</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600&family=Public+Sans:wght@400;500;600&display=swap">
 <style>
-/* Layout: banda azul marino con nombre y titular, lista de servicios con filas separadas por filetes, cuatro pasos en línea, contacto, banderas al pie. */
+/* Layout: banda azul marino con encabezado y tarjeta de servicios, pasos en línea de tiempo, tarjetas de contacto por país, pie azul marino con idiomas. */
 :root {
   --display: "Source Serif 4", Georgia, "Times New Roman", serif;
   --body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --bg: #F6F7F9;
+  --bg: #F3F5F8;
+  --surface: #FFFFFF;
   --ink: #0E1F2F;
-  --muted: #51606F;
-  --line: #D6DCE3;
+  --muted: #53626F;
+  --line: #D8DEE5;
   --accent: #1B5E8E;
+  --flag: #75AADB;
   --navy: #0B2236;
+  --navy-2: #103252;
   --navy-ink: #F2F6FA;
   --navy-muted: #A9BACA;
-  --navy-line: #27415A;
+  --navy-line: #29445D;
   --wa: #0F7F47;
   --wa-ink: #FFFFFF;
-  --shadow: rgba(11, 34, 54, 0.25);
+  --shadow: rgba(8, 24, 40, 0.35);
   --focus: #1B5E8E;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0A141D;
+    --surface: #101F2D;
     --ink: #E9EFF5;
     --muted: #98A8B8;
     --line: #223445;
     --accent: #6FB3E0;
     --navy: #07121B;
+    --navy-2: #0A1B2A;
     --navy-ink: #F2F6FA;
     --navy-muted: #9DB0C2;
     --navy-line: #1F3447;
     --wa: #2BC46E;
     --wa-ink: #04200F;
-    --shadow: rgba(0, 0, 0, 0.55);
+    --shadow: rgba(0, 0, 0, 0.6);
     --focus: #6FB3E0;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #0A141D;
+  --surface: #101F2D;
   --ink: #E9EFF5;
   --muted: #98A8B8;
   --line: #223445;
   --accent: #6FB3E0;
   --navy: #07121B;
+  --navy-2: #0A1B2A;
   --navy-ink: #F2F6FA;
   --navy-muted: #9DB0C2;
   --navy-line: #1F3447;
   --wa: #2BC46E;
   --wa-ink: #04200F;
-  --shadow: rgba(0, 0, 0, 0.55);
+  --shadow: rgba(0, 0, 0, 0.6);
   --focus: #6FB3E0;
   color-scheme: dark;
 }
@@ -73,28 +80,53 @@ body {
 }
 .wrap {
   width: 100%;
-  max-width: 980px;
+  max-width: 1040px;
   margin: 0 auto;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
-h1, h2 { font-family: var(--display); font-weight: 600; margin: 0; text-wrap: balance; }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; margin: 0; text-wrap: balance; }
 p { margin: 0; }
 a:focus-visible, button:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
-
+.top :focus-visible, footer :focus-visible { outline-color: var(--navy-ink); }
 .label {
   font-size: .78rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
   color: var(--accent);
 }
 
 /* Banda superior */
-.top { background: var(--navy); color: var(--navy-ink); }
-.bar { padding-block: 20px; border-bottom: 1px solid var(--navy-line); }
-.bar b { display: block; font-family: var(--display); font-size: 1.2rem; font-weight: 600; letter-spacing: .01em; line-height: 1.2; }
-.bar span { display: block; font-size: .85rem; color: var(--navy-muted); }
-.hero { padding-block: clamp(48px, 9vw, 104px); }
+.top {
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 100%);
+  color: var(--navy-ink);
+  border-top: 4px solid var(--flag);
+}
+.bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding-block: 18px; border-bottom: 1px solid var(--navy-line);
+}
+.brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.monogram {
+  width: 42px; height: 42px; flex: none; border-radius: 4px;
+  border: 1.5px solid var(--navy-muted);
+  display: grid; place-items: center;
+  font-family: var(--display); font-weight: 600; font-size: 1.05rem; letter-spacing: .02em;
+}
+.brand b { display: block; font-family: var(--display); font-size: 1.2rem; font-weight: 600; line-height: 1.2; }
+.brand span { display: block; font-size: .85rem; color: var(--navy-muted); line-height: 1.3; }
+.navlink {
+  font-size: .9rem; font-weight: 500; color: var(--navy-ink); text-decoration: none;
+  padding: 8px 14px; border: 1px solid var(--navy-line); border-radius: 6px; flex: none;
+}
+.navlink:hover { border-color: var(--navy-muted); }
+
+.hero { padding-block: clamp(40px, 7vw, 88px); }
+.hero-grid {
+  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  gap: clamp(32px, 6vw, 72px); align-items: center;
+}
+.hero-grid > * { min-width: 0; }
 .top .label { color: var(--navy-muted); }
-h1 { font-size: clamp(2.2rem, 6.6vw, 3.8rem); line-height: 1.08; letter-spacing: -0.015em; max-width: 14em; margin-top: 16px; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); line-height: 1.08; letter-spacing: -0.015em; margin-top: 16px; }
 .lead { margin-top: 20px; font-size: 1.15rem; color: var(--navy-muted); max-width: 30em; }
 
 .btn {
@@ -106,50 +138,65 @@ h1 { font-size: clamp(2.2rem, 6.6vw, 3.8rem); line-height: 1.08; letter-spacing:
 }
 .btn:hover { filter: brightness(1.08); }
 .btn svg { flex: none; }
-.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .btn.ghost { background: transparent; color: inherit; box-shadow: inset 0 0 0 1px currentColor; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+.card {
+  background: var(--surface); color: var(--ink);
+  border-radius: 10px; padding: clamp(22px, 3vw, 34px);
+  border-top: 3px solid var(--flag);
+  box-shadow: 0 28px 48px -28px var(--shadow);
+}
+.card .label { color: var(--accent); }
+.card h2 { font-size: 1.55rem; line-height: 1.2; margin-top: 8px; }
+.ticks { list-style: none; margin: 18px 0 0; padding: 0; }
+.ticks li { position: relative; padding: 12px 0 12px 32px; border-bottom: 1px solid var(--line); }
+.ticks li:last-child { border-bottom: 0; padding-bottom: 0; }
+.ticks li::before {
+  content: ""; position: absolute; left: 7px; top: calc(12px + .28em);
+  width: 6px; height: 11px; border: solid var(--accent); border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
 
 /* Secciones */
-.sec { padding-block: clamp(44px, 7vw, 80px); }
-.sec + .sec { border-top: 1px solid var(--line); }
-.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: clamp(24px, 5vw, 64px); align-items: start; }
-.two > * { min-width: 0; }
-h2 { font-size: clamp(1.5rem, 3.6vw, 2rem); line-height: 1.15; margin-top: 10px; }
-.rows { list-style: none; margin: 0; padding: 0; }
-.rows li { padding-block: 16px; border-bottom: 1px solid var(--line); }
-.rows li:first-child { padding-top: 0; }
-.rows li:last-child { border-bottom: 0; padding-bottom: 0; }
+.sec { padding-block: clamp(48px, 7vw, 88px); }
+.sec.alt { background: var(--surface); border-block: 1px solid var(--line); }
+h2 { font-size: clamp(1.6rem, 3.8vw, 2.2rem); line-height: 1.15; letter-spacing: -0.01em; }
 
-.steps { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 24px; }
-.step { border-top: 2px solid var(--ink); padding-top: 14px; min-width: 0; }
+.steps { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.step { position: relative; border-top: 2px solid var(--line); padding-top: 20px; min-width: 0; }
+.step::before {
+  content: ""; position: absolute; left: 0; top: -7px;
+  width: 12px; height: 12px; border-radius: 50%; background: var(--accent);
+}
 .step .n { font-size: .8rem; font-weight: 600; letter-spacing: .1em; color: var(--accent); font-variant-numeric: tabular-nums; }
-.step p { margin-top: 6px; font-weight: 500; }
+.step p { margin-top: 6px; font-family: var(--display); font-weight: 600; font-size: 1.2rem; line-height: 1.3; }
 
-.contact-line { margin-top: 12px; margin-bottom: 22px; color: var(--muted); }
-.num { margin-top: 4px; font-family: var(--display); font-size: 1.5rem; font-weight: 600; font-variant-numeric: tabular-nums; }
-.contact .actions { margin-top: 20px; }
-.numrow { padding-bottom: 24px; }
-.numrow + .numrow { padding-top: 24px; border-top: 1px solid var(--line); }
+.contact-line { margin-top: 12px; color: var(--muted); max-width: 34em; }
+.nums { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 32px; }
+.numrow { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: clamp(20px, 3vw, 28px); min-width: 0; }
 .numhead { display: flex; align-items: center; gap: 10px; font-size: .8rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .numhead svg { width: 28px; height: 19px; border-radius: 2px; flex: none; }
-.numrow .num { margin-top: 8px; }
-.numrow .actions { margin-top: 14px; }
-.mail { margin-top: 0; padding-top: 24px; border-top: 1px solid var(--line); font-size: clamp(.8rem, 3.9vw, 1.0625rem); overflow-wrap: anywhere; }
+.num { margin-top: 10px; font-family: var(--display); font-size: 1.7rem; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.numrow .actions { margin-top: 20px; }
+.numrow .btn { flex: 1 1 auto; }
+.numrow .btn.ghost { color: var(--ink); }
+.mail { margin-top: 28px; font-size: clamp(.8rem, 3.9vw, 1.0625rem); overflow-wrap: anywhere; }
 .mail a { color: var(--accent); }
 
-footer { padding-block: 36px 112px; border-top: 1px solid var(--line); }
+footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
 .foot { display: flex; flex-wrap: wrap; gap: 20px 32px; align-items: center; justify-content: space-between; }
 .langs { display: flex; flex-wrap: wrap; gap: 8px; }
 .flag {
-  appearance: none; background: transparent; color: var(--muted);
-  border: 1px solid var(--line); border-radius: 6px;
+  appearance: none; background: transparent; color: var(--navy-muted);
+  border: 1px solid var(--navy-line); border-radius: 6px;
   font: inherit; font-size: .85rem; font-weight: 500;
   padding: 7px 12px 7px 8px; cursor: pointer;
   display: inline-flex; align-items: center; gap: 8px;
 }
 .flag svg { display: block; width: 28px; height: 19px; border-radius: 2px; flex: none; }
-.flag[aria-pressed="true"] { border-color: var(--ink); color: var(--ink); font-weight: 600; }
-.copy { font-size: .85rem; color: var(--muted); }
+.flag[aria-pressed="true"] { border-color: var(--navy-ink); color: var(--navy-ink); font-weight: 600; }
+.copy { font-size: .85rem; color: var(--navy-muted); }
 
 .fab {
   display: none; position: fixed; z-index: 5;
@@ -158,59 +205,66 @@ footer { padding-block: 36px 112px; border-top: 1px solid var(--line); }
   box-shadow: 0 8px 20px var(--shadow);
 }
 
+@media (max-width: 860px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .steps { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: 28px; }
+  .step { border-top: 0; border-left: 2px solid var(--line); padding: 0 0 26px 24px; }
+  .step:last-child { padding-bottom: 0; }
+  .step::before { left: -7px; top: 4px; }
+}
 @media (max-width: 760px) {
-  .two { grid-template-columns: minmax(0, 1fr); }
+  .nums { grid-template-columns: minmax(0, 1fr); }
   .fab { display: inline-flex; }
-  .actions .btn { width: 100%; }
+  footer { padding-block: 36px 104px; }
+  .hero .actions .btn { width: 100%; }
+  .navlink { padding: 7px 12px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
 </head>
 <body>
-
 <section class="top">
   <div class="wrap">
     <div class="bar">
-      <b>Alberto Gutiérrez</b>
-      <span data-i18n="brandSub">Gestor de trámites</span>
+      <div class="brand">
+        <div class="monogram" aria-hidden="true">AG</div>
+        <div>
+          <b>Alberto Gutiérrez</b>
+          <span data-i18n="brandSub">Gestor de trámites</span>
+        </div>
+      </div>
+      <a class="navlink" href="#contacto" data-i18n="contactLabel">Contacto</a>
     </div>
     <div class="hero">
-      <p class="label" data-i18n="eyebrow">Gestoría para extranjeros en Uruguay</p>
-      <h1 data-i18n="h1">Tu cédula uruguaya, sin trámites.</h1>
-      <p class="lead" data-i18n="lead">Me encargo de toda la documentación para que vos no tengas que hacerla.</p>
-      <div class="actions">
-      <a class="btn" data-wa href="#contacto" target="_blank" rel="noopener">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>
-        <span data-i18n="cta">Escribime por WhatsApp</span>
-      </a>
-      <a class="btn ghost" data-tel href="tel:+59891771466">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
-        <span data-i18n="call">Llamar</span>
-      </a>
+      <div class="hero-grid">
+        <div>
+          <p class="label" data-i18n="eyebrow">Gestoría para extranjeros en Uruguay</p>
+          <h1 data-i18n="h1">Tu cédula uruguaya, sin trámites.</h1>
+          <p class="lead" data-i18n="lead">Me encargo de toda la documentación para que vos no tengas que hacerla.</p>
+          <div class="actions">
+            <a class="btn" data-wa href="#contacto" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg><span data-i18n="cta">Escribime por WhatsApp</span></a>
+            <a class="btn ghost" data-tel href="tel:+59891771466"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span data-i18n="call">Llamar</span></a>
+          </div>
+        </div>
+        <div class="card">
+          <p class="label" data-i18n="svcLabel">Qué incluye</p>
+          <h2 data-i18n="svcTitle">Cédula de identidad uruguaya</h2>
+          <ul class="ticks">
+            <li data-i18n="inc1">Revisión de tu caso y lista de documentos</li>
+            <li data-i18n="inc2">Preparación y presentación del trámite</li>
+            <li data-i18n="inc3">Seguimiento hasta que tengas tu cédula</li>
+            <li data-i18n="inc4">Contacto directo por WhatsApp o teléfono</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <main>
-  <section class="sec">
-    <div class="wrap two">
-      <div>
-        <p class="label" data-i18n="svcLabel">Qué incluye</p>
-        <h2 data-i18n="svcTitle">Cédula de identidad uruguaya</h2>
-      </div>
-      <ul class="rows">
-        <li data-i18n="inc1">Revisión de tu caso y lista de documentos</li>
-        <li data-i18n="inc2">Preparación y presentación del trámite</li>
-        <li data-i18n="inc3">Seguimiento hasta que tengas tu cédula</li>
-        <li data-i18n="inc4">Contacto directo por WhatsApp o teléfono</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="sec">
+  <section class="sec alt">
     <div class="wrap">
-      <p class="label" data-i18n="howLabel">Cómo funciona</p>
+      <h2 data-i18n="howLabel">Cómo funciona</h2>
       <ol class="steps">
         <li class="step"><div class="n">01</div><p data-i18n="s1">Me escribís</p></li>
         <li class="step"><div class="n">02</div><p data-i18n="s2">Te digo qué hace falta</p></li>
@@ -221,31 +275,29 @@ footer { padding-block: 36px 112px; border-top: 1px solid var(--line); }
   </section>
 
   <section class="sec contact" id="contacto">
-    <div class="wrap two">
-      <div>
-        <p class="label" data-i18n="contactLabel">Contacto</p>
-        <h2 data-i18n="contactTitle">Contame tu caso</h2>
-      </div>
-      <div>
-        <p class="contact-line" data-i18n="contactText">Atiendo por WhatsApp, teléfono o correo.</p>
-        <div class="numrow">
-          <div class="numhead"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#fff"/><g fill="#75AADB"><rect y="2.667" width="36" height="2.667"/><rect y="8" width="36" height="2.667"/><rect y="13.333" width="36" height="2.667"/><rect y="18.667" width="36" height="2.667"/></g><rect width="10.667" height="10.667" fill="#fff"/><circle cx="5.333" cy="5.333" r="2.8" fill="#FCD116"/></svg><span data-i18n="cUy">Uruguay</span></div>
-          <p class="num">+598 91 771 466</p>
-          <div class="actions">
-            <a class="btn" data-wa="uy" href="#contacto" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg><span>WhatsApp</span></a>
-            <a class="btn ghost" href="tel:+59891771466"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span data-i18n="call">Llamar</span></a>
-          </div>
+    <div class="wrap">
+      <p class="label" data-i18n="contactLabel">Contacto</p>
+      <h2 data-i18n="contactTitle" style="margin-top:10px">Contame tu caso</h2>
+      <p class="contact-line" data-i18n="contactText">Atiendo por WhatsApp, teléfono o correo.</p>
+      <div class="nums">
+      <div class="numrow">
+        <div class="numhead"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#fff"/><g fill="#75AADB"><rect y="2.667" width="36" height="2.667"/><rect y="8" width="36" height="2.667"/><rect y="13.333" width="36" height="2.667"/><rect y="18.667" width="36" height="2.667"/></g><rect width="10.667" height="10.667" fill="#fff"/><circle cx="5.333" cy="5.333" r="2.8" fill="#FCD116"/></svg><span data-i18n="cUy">Uruguay</span></div>
+        <p class="num">+598 91 771 466</p>
+        <div class="actions">
+          <a class="btn" data-wa="uy" href="#contacto" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg><span>WhatsApp</span></a>
+          <a class="btn ghost" href="tel:+59891771466"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span data-i18n="call">Llamar</span></a>
         </div>
-        <div class="numrow">
-          <div class="numhead"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#009C3B"/><polygon points="18,2.5 33.5,12 18,21.5 2.5,12" fill="#FFDF00"/><circle cx="18" cy="12" r="5.6" fill="#002776"/></svg><span data-i18n="cBr">Brasil</span></div>
-          <p class="num">+55 53 99140-0708</p>
-          <div class="actions">
-            <a class="btn" data-wa="br" href="#contacto" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg><span>WhatsApp</span></a>
-            <a class="btn ghost" href="tel:+5553991400708"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span data-i18n="call">Llamar</span></a>
-          </div>
-        </div>
-        <p class="mail"><a href="mailto:documentacionaextranjeros2000@outlook.com">documentacionaextranjeros2000@outlook.com</a></p>
       </div>
+      <div class="numrow">
+        <div class="numhead"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#009C3B"/><polygon points="18,2.5 33.5,12 18,21.5 2.5,12" fill="#FFDF00"/><circle cx="18" cy="12" r="5.6" fill="#002776"/></svg><span data-i18n="cBr">Brasil</span></div>
+        <p class="num">+55 53 99140-0708</p>
+        <div class="actions">
+          <a class="btn" data-wa="br" href="#contacto" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg><span>WhatsApp</span></a>
+          <a class="btn ghost" href="tel:+5553991400708"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span data-i18n="call">Llamar</span></a>
+        </div>
+      </div>
+      </div>
+      <p class="mail"><a href="mailto:documentacionaextranjeros2000@outlook.com">documentacionaextranjeros2000@outlook.com</a></p>
     </div>
   </section>
 </main>
@@ -284,10 +336,7 @@ footer { padding-block: 36px 112px; border-top: 1px solid var(--line); }
   </div>
 </footer>
 
-<a class="btn fab" data-wa href="#contacto" target="_blank" rel="noopener">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>
-  <span>WhatsApp</span>
-</a>
+<a class="btn fab" data-wa href="#contacto" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg><span>WhatsApp</span></a>
 
 <script>
 (function () {
