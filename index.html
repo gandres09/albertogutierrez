@@ -181,8 +181,18 @@ h2 { font-size: clamp(1.6rem, 3.8vw, 2.2rem); line-height: 1.15; letter-spacing:
 .numrow .actions { margin-top: 20px; }
 .numrow .btn { flex: 1 1 auto; }
 .numrow .btn.ghost { color: var(--ink); }
-.mail { margin-top: 28px; font-size: clamp(.8rem, 3.9vw, 1.0625rem); overflow-wrap: anywhere; }
-.mail a { color: var(--accent); }
+.mailrow {
+  margin-top: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: clamp(20px, 3vw, 28px);
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px;
+}
+.mailinfo { flex: 1 1 320px; min-width: 0; }
+.numhead .mi { width: 22px; height: 22px; border-radius: 0; color: var(--accent); }
+.maddr {
+  display: block; margin-top: 10px; color: var(--accent); font-weight: 600;
+  font-size: clamp(1rem, 4.4vw, 1.4rem); line-height: 1.3; overflow-wrap: anywhere;
+}
+.mailrow .btn { flex: 0 0 auto; color: var(--ink); }
 
 footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
 .foot { display: flex; flex-wrap: wrap; gap: 20px 32px; align-items: center; justify-content: space-between; }
@@ -216,7 +226,7 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
   .nums { grid-template-columns: minmax(0, 1fr); }
   .fab { display: inline-flex; }
   footer { padding-block: 36px 104px; }
-  .hero .actions .btn { width: 100%; }
+  .hero .actions .btn, .mailrow .btn { width: 100%; }
   .navlink { padding: 7px 12px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -297,7 +307,13 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
         </div>
       </div>
       </div>
-      <p class="mail"><a href="mailto:documentacionaextranjeros2000@outlook.com">documentacionaextranjeros2000@outlook.com</a></p>
+      <div class="mailrow">
+        <div class="mailinfo">
+          <div class="numhead"><svg class="mi" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7l8.5 6.5L20.5 7"/></svg><span data-i18n="mailLabel">Correo electrónico</span></div>
+          <a class="maddr" href="mailto:documentacionaextranjeros2000@outlook.com">documentacionaextranjeros2000<wbr>@outlook.com</a>
+        </div>
+        <a class="btn ghost" href="mailto:documentacionaextranjeros2000@outlook.com"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7l8.5 6.5L20.5 7"/></svg><span data-i18n="mailBtn">Escribir un correo</span></a>
+      </div>
     </div>
   </section>
 </main>
@@ -363,7 +379,9 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
       contactText: "Atiendo por WhatsApp, teléfono o correo.",
       call: "Llamar",
       cUy: "Uruguay",
-      cBr: "Brasil"
+      cBr: "Brasil",
+      mailLabel: "Correo electrónico",
+      mailBtn: "Escribir un correo"
     },
     en: {
       brandSub: "Paperwork specialist",
@@ -384,7 +402,9 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
       contactText: "I answer on WhatsApp, by phone or by email.",
       call: "Call",
       cUy: "Uruguay",
-      cBr: "Brazil"
+      cBr: "Brazil",
+      mailLabel: "Email",
+      mailBtn: "Send an email"
     },
     pt: {
       brandSub: "Despachante",
@@ -405,7 +425,9 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
       contactText: "Atendo pelo WhatsApp, por telefone ou por e-mail.",
       call: "Ligar",
       cUy: "Uruguai",
-      cBr: "Brasil"
+      cBr: "Brasil",
+      mailLabel: "E-mail",
+      mailBtn: "Enviar e-mail"
     }
   };
 
