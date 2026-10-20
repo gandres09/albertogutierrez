@@ -1,0 +1,388 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Alberto Gutiérrez, gestor</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: banda azul marino con nombre y titular, lista de servicios con filas separadas por filetes, cuatro pasos en línea, contacto, banderas al pie. */
+:root {
+  --display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --bg: #F6F7F9;
+  --ink: #0E1F2F;
+  --muted: #51606F;
+  --line: #D6DCE3;
+  --accent: #1B5E8E;
+  --navy: #0B2236;
+  --navy-ink: #F2F6FA;
+  --navy-muted: #A9BACA;
+  --navy-line: #27415A;
+  --wa: #0F7F47;
+  --wa-ink: #FFFFFF;
+  --shadow: rgba(11, 34, 54, 0.25);
+  --focus: #1B5E8E;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0A141D;
+    --ink: #E9EFF5;
+    --muted: #98A8B8;
+    --line: #223445;
+    --accent: #6FB3E0;
+    --navy: #07121B;
+    --navy-ink: #F2F6FA;
+    --navy-muted: #9DB0C2;
+    --navy-line: #1F3447;
+    --wa: #2BC46E;
+    --wa-ink: #04200F;
+    --shadow: rgba(0, 0, 0, 0.55);
+    --focus: #6FB3E0;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0A141D;
+  --ink: #E9EFF5;
+  --muted: #98A8B8;
+  --line: #223445;
+  --accent: #6FB3E0;
+  --navy: #07121B;
+  --navy-ink: #F2F6FA;
+  --navy-muted: #9DB0C2;
+  --navy-line: #1F3447;
+  --wa: #2BC46E;
+  --wa-ink: #04200F;
+  --shadow: rgba(0, 0, 0, 0.55);
+  --focus: #6FB3E0;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+.wrap {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1, h2 { font-family: var(--display); font-weight: 600; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+.label {
+  font-size: .78rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Banda superior */
+.top { background: var(--navy); color: var(--navy-ink); }
+.bar { padding-block: 20px; border-bottom: 1px solid var(--navy-line); }
+.bar b { display: block; font-family: var(--display); font-size: 1.2rem; font-weight: 600; letter-spacing: .01em; line-height: 1.2; }
+.bar span { display: block; font-size: .85rem; color: var(--navy-muted); }
+.hero { padding-block: clamp(48px, 9vw, 104px); }
+.top .label { color: var(--navy-muted); }
+h1 { font-size: clamp(2.2rem, 6.6vw, 3.8rem); line-height: 1.08; letter-spacing: -0.015em; max-width: 14em; margin-top: 16px; }
+.lead { margin-top: 20px; font-size: 1.15rem; color: var(--navy-muted); max-width: 30em; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 14px 26px; border-radius: 6px;
+  background: var(--wa); color: var(--wa-ink);
+  font-family: var(--body); font-weight: 600; font-size: 1rem;
+  text-decoration: none;
+}
+.btn:hover { filter: brightness(1.08); }
+.btn svg { flex: none; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.btn.ghost { background: transparent; color: inherit; box-shadow: inset 0 0 0 1px currentColor; }
+
+/* Secciones */
+.sec { padding-block: clamp(44px, 7vw, 80px); }
+.sec + .sec { border-top: 1px solid var(--line); }
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: clamp(24px, 5vw, 64px); align-items: start; }
+.two > * { min-width: 0; }
+h2 { font-size: clamp(1.5rem, 3.6vw, 2rem); line-height: 1.15; margin-top: 10px; }
+.rows { list-style: none; margin: 0; padding: 0; }
+.rows li { padding-block: 16px; border-bottom: 1px solid var(--line); }
+.rows li:first-child { padding-top: 0; }
+.rows li:last-child { border-bottom: 0; padding-bottom: 0; }
+
+.steps { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 24px; }
+.step { border-top: 2px solid var(--ink); padding-top: 14px; min-width: 0; }
+.step .n { font-size: .8rem; font-weight: 600; letter-spacing: .1em; color: var(--accent); font-variant-numeric: tabular-nums; }
+.step p { margin-top: 6px; font-weight: 500; }
+
+.contact-line { margin-top: 12px; color: var(--muted); }
+.num { margin-top: 4px; font-family: var(--display); font-size: 1.5rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.contact .actions { margin-top: 20px; }
+
+footer { padding-block: 36px 112px; border-top: 1px solid var(--line); }
+.foot { display: flex; flex-wrap: wrap; gap: 20px 32px; align-items: center; justify-content: space-between; }
+.langs { display: flex; flex-wrap: wrap; gap: 8px; }
+.flag {
+  appearance: none; background: transparent; color: var(--muted);
+  border: 1px solid var(--line); border-radius: 6px;
+  font: inherit; font-size: .85rem; font-weight: 500;
+  padding: 7px 12px 7px 8px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.flag svg { display: block; width: 28px; height: 19px; border-radius: 2px; flex: none; }
+.flag[aria-pressed="true"] { border-color: var(--ink); color: var(--ink); font-weight: 600; }
+.copy { font-size: .85rem; color: var(--muted); }
+
+.fab {
+  display: none; position: fixed; z-index: 5;
+  right: max(16px, env(safe-area-inset-right, 0px));
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 8px 20px var(--shadow);
+}
+
+@media (max-width: 760px) {
+  .two { grid-template-columns: minmax(0, 1fr); }
+  .fab { display: inline-flex; }
+  .actions .btn { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+
+<section class="top">
+  <div class="wrap">
+    <div class="bar">
+      <b>Alberto Gutiérrez</b>
+      <span data-i18n="brandSub">Gestor de trámites</span>
+    </div>
+    <div class="hero">
+      <p class="label" data-i18n="eyebrow">Gestoría para extranjeros en Uruguay</p>
+      <h1 data-i18n="h1">Tu cédula uruguaya, sin trámites.</h1>
+      <p class="lead" data-i18n="lead">Me encargo de toda la documentación para que vos no tengas que hacerla.</p>
+      <div class="actions">
+      <a class="btn" data-wa href="#contacto" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>
+        <span data-i18n="cta">Escribime por WhatsApp</span>
+      </a>
+      <a class="btn ghost" href="tel:+59891771466">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+        <span data-i18n="call">Llamar</span>
+      </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+  <section class="sec">
+    <div class="wrap two">
+      <div>
+        <p class="label" data-i18n="svcLabel">Qué incluye</p>
+        <h2 data-i18n="svcTitle">Cédula de identidad uruguaya</h2>
+      </div>
+      <ul class="rows">
+        <li data-i18n="inc1">Revisión de tu caso y lista de documentos</li>
+        <li data-i18n="inc2">Preparación y presentación del trámite</li>
+        <li data-i18n="inc3">Seguimiento hasta que tengas tu cédula</li>
+        <li data-i18n="inc4">Contacto directo por WhatsApp o teléfono</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <p class="label" data-i18n="howLabel">Cómo funciona</p>
+      <ol class="steps">
+        <li class="step"><div class="n">01</div><p data-i18n="s1">Me escribís</p></li>
+        <li class="step"><div class="n">02</div><p data-i18n="s2">Te digo qué hace falta</p></li>
+        <li class="step"><div class="n">03</div><p data-i18n="s3">Hago los trámites</p></li>
+        <li class="step"><div class="n">04</div><p data-i18n="s4">Recibís tu cédula</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec contact" id="contacto">
+    <div class="wrap two">
+      <div>
+        <p class="label" data-i18n="contactLabel">Contacto</p>
+        <h2 data-i18n="contactTitle">Contame tu caso</h2>
+      </div>
+      <div>
+        <p class="contact-line" data-i18n="contactText">Atiendo por WhatsApp o por teléfono.</p>
+        <p class="num">+598 91 771 466</p>
+        <div class="actions">
+        <a class="btn" data-wa href="#contacto" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>
+          <span data-i18n="cta">Escribime por WhatsApp</span>
+        </a>
+        <a class="btn ghost" href="tel:+59891771466">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+          <span data-i18n="call">Llamar</span>
+        </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="langs">
+      <button type="button" class="flag" data-lang="es" aria-pressed="true">
+        <svg viewBox="0 0 36 24" aria-hidden="true">
+          <rect width="36" height="24" fill="#fff"/>
+          <g fill="#75AADB"><rect y="2.667" width="36" height="2.667"/><rect y="8" width="36" height="2.667"/><rect y="13.333" width="36" height="2.667"/><rect y="18.667" width="36" height="2.667"/></g>
+          <rect width="10.667" height="10.667" fill="#fff"/>
+          <circle cx="5.333" cy="5.333" r="2.8" fill="#FCD116"/>
+        </svg>
+        <span>Español</span>
+      </button>
+      <button type="button" class="flag" data-lang="en" aria-pressed="false">
+        <svg viewBox="0 0 36 24" aria-hidden="true">
+          <rect width="36" height="24" fill="#fff"/>
+          <g fill="#B22234"><rect y="0" width="36" height="1.846"/><rect y="3.692" width="36" height="1.846"/><rect y="7.385" width="36" height="1.846"/><rect y="11.077" width="36" height="1.846"/><rect y="14.769" width="36" height="1.846"/><rect y="18.462" width="36" height="1.846"/><rect y="22.154" width="36" height="1.846"/></g>
+          <rect width="14.4" height="12.92" fill="#3C3B6E"/>
+          <g fill="#fff"><circle cx="2.2" cy="2.4" r=".55"/><circle cx="5.4" cy="2.4" r=".55"/><circle cx="8.6" cy="2.4" r=".55"/><circle cx="11.8" cy="2.4" r=".55"/><circle cx="2.2" cy="6.4" r=".55"/><circle cx="5.4" cy="6.4" r=".55"/><circle cx="8.6" cy="6.4" r=".55"/><circle cx="11.8" cy="6.4" r=".55"/><circle cx="2.2" cy="10.4" r=".55"/><circle cx="5.4" cy="10.4" r=".55"/><circle cx="8.6" cy="10.4" r=".55"/><circle cx="11.8" cy="10.4" r=".55"/></g>
+        </svg>
+        <span>English</span>
+      </button>
+      <button type="button" class="flag" data-lang="pt" aria-pressed="false">
+        <svg viewBox="0 0 36 24" aria-hidden="true">
+          <rect width="36" height="24" fill="#009C3B"/>
+          <polygon points="18,2.5 33.5,12 18,21.5 2.5,12" fill="#FFDF00"/>
+          <circle cx="18" cy="12" r="5.6" fill="#002776"/>
+        </svg>
+        <span>Português</span>
+      </button>
+    </div>
+    <p class="copy">© 2026 Alberto Gutiérrez</p>
+  </div>
+</footer>
+
+<a class="btn fab" data-wa href="#contacto" target="_blank" rel="noopener">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>
+  <span>WhatsApp</span>
+</a>
+
+<script>
+(function () {
+  // Número de WhatsApp con código de país y sin signos.
+  var WA_NUMBER = "59891771466";
+
+  var T = {
+    es: {
+      brandSub: "Gestor de trámites",
+      eyebrow: "Gestoría para extranjeros en Uruguay",
+      h1: "Tu cédula uruguaya, sin trámites.",
+      lead: "Me encargo de toda la documentación para que vos no tengas que hacerla.",
+      cta: "Escribime por WhatsApp",
+      svcLabel: "Qué incluye",
+      svcTitle: "Cédula de identidad uruguaya",
+      inc1: "Revisión de tu caso y lista de documentos",
+      inc2: "Preparación y presentación del trámite",
+      inc3: "Seguimiento hasta que tengas tu cédula",
+      inc4: "Contacto directo por WhatsApp o teléfono",
+      howLabel: "Cómo funciona",
+      s1: "Me escribís", s2: "Te digo qué hace falta", s3: "Hago los trámites", s4: "Recibís tu cédula",
+      contactLabel: "Contacto",
+      contactTitle: "Contame tu caso",
+      contactText: "Atiendo por WhatsApp o por teléfono.",
+      call: "Llamar"
+    },
+    en: {
+      brandSub: "Paperwork specialist",
+      eyebrow: "Paperwork help for foreigners in Uruguay",
+      h1: "Your Uruguayan ID card, without the paperwork.",
+      lead: "I handle all the documentation so you don't have to.",
+      cta: "Message me on WhatsApp",
+      svcLabel: "What's included",
+      svcTitle: "Uruguayan identity card (cédula)",
+      inc1: "Review of your case and list of documents",
+      inc2: "Preparation and submission of the application",
+      inc3: "Follow-up until you have your ID card",
+      inc4: "Direct contact on WhatsApp or by phone",
+      howLabel: "How it works",
+      s1: "You message me", s2: "I tell you what's needed", s3: "I handle the procedures", s4: "You get your ID card",
+      contactLabel: "Contact",
+      contactTitle: "Tell me your case",
+      contactText: "I answer on WhatsApp or by phone.",
+      call: "Call"
+    },
+    pt: {
+      brandSub: "Despachante",
+      eyebrow: "Assessoria para estrangeiros no Uruguai",
+      h1: "Sua cédula uruguaia, sem burocracia.",
+      lead: "Cuido de toda a documentação para você não precisar fazer.",
+      cta: "Fale comigo no WhatsApp",
+      svcLabel: "O que inclui",
+      svcTitle: "Cédula de identidade uruguaia",
+      inc1: "Análise do seu caso e lista de documentos",
+      inc2: "Preparo e apresentação do trâmite",
+      inc3: "Acompanhamento até você ter sua cédula",
+      inc4: "Contato direto pelo WhatsApp ou telefone",
+      howLabel: "Como funciona",
+      s1: "Você me escreve", s2: "Digo o que é preciso", s3: "Faço os trâmites", s4: "Você recebe sua cédula",
+      contactLabel: "Contato",
+      contactTitle: "Conte seu caso",
+      contactText: "Atendo pelo WhatsApp ou por telefone.",
+      call: "Ligar"
+    }
+  };
+
+  var MSG = {
+    es: "Hola Alberto, quiero consultar por la cédula de identidad.",
+    en: "Hi Alberto, I'd like to ask about the Uruguayan ID card.",
+    pt: "Olá Alberto, quero consultar sobre a cédula de identidade uruguaia."
+  };
+
+  var SUPPORTED = ["es", "en", "pt"];
+
+  function detect() {
+    var saved = null;
+    try { saved = localStorage.getItem("lang"); } catch (e) {}
+    if (SUPPORTED.indexOf(saved) !== -1) return saved;
+    var list = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || "es"];
+    for (var i = 0; i < list.length; i++) {
+      var c = String(list[i]).slice(0, 2).toLowerCase();
+      if (SUPPORTED.indexOf(c) !== -1) return c;
+    }
+    return "es";
+  }
+
+  function apply(lang) {
+    var dict = T[lang];
+    document.documentElement.lang = lang;
+    var nodes = document.querySelectorAll("[data-i18n]");
+    for (var i = 0; i < nodes.length; i++) {
+      var k = nodes[i].getAttribute("data-i18n");
+      if (dict[k] !== undefined) nodes[i].textContent = dict[k];
+    }
+    var valid = /^\d{8,15}$/.test(WA_NUMBER);
+    var href = valid ? "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(MSG[lang]) : "#contacto";
+    var links = document.querySelectorAll("[data-wa]");
+    for (var j = 0; j < links.length; j++) {
+      links[j].setAttribute("href", href);
+      if (!valid) links[j].removeAttribute("target");
+    }
+    var flags = document.querySelectorAll(".flag");
+    for (var f = 0; f < flags.length; f++) {
+      flags[f].setAttribute("aria-pressed", flags[f].getAttribute("data-lang") === lang ? "true" : "false");
+    }
+  }
+
+  var flags = document.querySelectorAll(".flag");
+  for (var i = 0; i < flags.length; i++) {
+    flags[i].addEventListener("click", function () {
+      var l = this.getAttribute("data-lang");
+      try { localStorage.setItem("lang", l); } catch (e) {}
+      apply(l);
+    });
+  }
+
+  apply(detect());
+})();
+</script>
