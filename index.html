@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Alberto Gutiérrez, gestor. Tramito tu cédula de identidad uruguaya.">
+<meta name="description" content="Alberto Gutiérrez, gestor. Cédula de identidad uruguaya, partidas, certificados y apostillas. 41 años de experiencia.">
 <title>Alberto Gutiérrez, gestor</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600&family=Public+Sans:wght@400;500;600&display=swap">
 <style>
@@ -158,6 +158,16 @@ h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); line-height: 1.08; letter-spacing: -
   transform: rotate(45deg);
 }
 
+.facts { display: flex; flex-wrap: wrap; gap: 16px 36px; margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--navy-line); }
+.facts p { min-width: 0; }
+.facts b { display: block; font-family: var(--display); font-weight: 600; font-size: 1.5rem; line-height: 1.2; }
+.facts span { display: block; font-size: .9rem; color: var(--navy-muted); }
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+.two > * { min-width: 0; }
+.section-text { margin-top: 14px; color: var(--muted); max-width: 30em; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: clamp(20px, 3vw, 30px); }
+.panel .ticks { margin: 0; }
+
 /* Secciones */
 .sec { padding-block: clamp(48px, 7vw, 88px); }
 .sec.alt { background: var(--surface); border-block: 1px solid var(--line); }
@@ -240,7 +250,7 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
 }
 
 @media (max-width: 860px) {
-  .hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .hero-grid, .two { grid-template-columns: minmax(0, 1fr); }
   .steps { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: 28px; }
   .step { border-top: 0; border-left: 2px solid var(--line); padding: 0 0 26px 24px; }
   .step:last-child { padding-bottom: 0; }
@@ -279,6 +289,10 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
             <a class="btn" data-wa href="#contacto" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg><span data-i18n="cta">Escribime por WhatsApp</span></a>
             <a class="btn ghost" data-tel href="#contacto"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span data-i18n="call">Llamar</span></a>
           </div>
+          <div class="facts">
+            <p><b data-i18n="f1b">41 años</b><span data-i18n="f1t">de experiencia en documentación</span></p>
+            <p><b data-i18n="f2b">Envíos</b><span data-i18n="f2t">a cualquier país</span></p>
+          </div>
         </div>
         <div class="card">
           <p class="label" data-i18n="svcLabel">Qué incluye</p>
@@ -296,6 +310,24 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
 </section>
 
 <main>
+  <section class="sec">
+    <div class="wrap two">
+      <div>
+        <p class="label" data-i18n="abLabel">Desde el exterior</p>
+        <h2 data-i18n="abTitle" style="margin-top:10px">Si estás en el exterior</h2>
+        <p class="section-text" data-i18n="abText">Lo tramito por vos y te lo enviamos a cualquier país.</p>
+      </div>
+      <div class="panel">
+        <ul class="ticks">
+          <li data-i18n="ab1">Partidas de nacimiento y de casamiento</li>
+          <li data-i18n="ab2">Certificados de soltería</li>
+          <li data-i18n="ab3">Certificados de antecedentes apostillados</li>
+          <li data-i18n="ab4">Apostillado de documentos</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <section class="sec alt">
     <div class="wrap">
       <h2 data-i18n="howLabel">Cómo funciona</h2>
@@ -303,7 +335,7 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
         <li class="step"><div class="n">01</div><p data-i18n="s1">Me escribís</p></li>
         <li class="step"><div class="n">02</div><p data-i18n="s2">Te digo qué hace falta</p></li>
         <li class="step"><div class="n">03</div><p data-i18n="s3">Hago los trámites</p></li>
-        <li class="step"><div class="n">04</div><p data-i18n="s4">Recibís tu cédula</p></li>
+        <li class="step"><div class="n">04</div><p data-i18n="s4">Recibís tu documento</p></li>
       </ol>
     </div>
   </section>
@@ -394,6 +426,9 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
   var T = {
     es: {
       brandSub: "Gestor de trámites",
+      f1b: "41 años", f1t: "de experiencia en documentación", f2b: "Envíos", f2t: "a cualquier país",
+      abLabel: "Desde el exterior", abTitle: "Si estás en el exterior", abText: "Lo tramito por vos y te lo enviamos a cualquier país.",
+      ab1: "Partidas de nacimiento y de casamiento", ab2: "Certificados de soltería", ab3: "Certificados de antecedentes apostillados", ab4: "Apostillado de documentos",
       eyebrow: "Gestoría para extranjeros en Uruguay",
       h1: "Tu cédula uruguaya, sin trámites.",
       lead: "Me encargo de toda la documentación para que vos no tengas que hacerla.",
@@ -405,7 +440,7 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
       inc3: "Seguimiento hasta que tengas tu cédula",
       inc4: "Contacto directo por WhatsApp o teléfono",
       howLabel: "Cómo funciona",
-      s1: "Me escribís", s2: "Te digo qué hace falta", s3: "Hago los trámites", s4: "Recibís tu cédula",
+      s1: "Me escribís", s2: "Te digo qué hace falta", s3: "Hago los trámites", s4: "Recibís tu documento",
       contactLabel: "Contacto",
       contactTitle: "Contame tu caso",
       contactText: "Atiendo por WhatsApp, teléfono o correo.",
@@ -419,6 +454,9 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
     },
     en: {
       brandSub: "Paperwork specialist",
+      f1b: "41 years", f1t: "of experience in documentation", f2b: "Delivery", f2t: "to any country",
+      abLabel: "From abroad", abTitle: "If you are abroad", abText: "I handle it for you and we send it to any country.",
+      ab1: "Birth and marriage certificates", ab2: "Certificates of single status", ab3: "Apostilled criminal record certificates", ab4: "Apostille of documents",
       eyebrow: "Paperwork help for foreigners in Uruguay",
       h1: "Your Uruguayan ID card, without the paperwork.",
       lead: "I handle all the documentation so you don't have to.",
@@ -430,7 +468,7 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
       inc3: "Follow-up until you have your ID card",
       inc4: "Direct contact on WhatsApp or by phone",
       howLabel: "How it works",
-      s1: "You message me", s2: "I tell you what's needed", s3: "I handle the procedures", s4: "You get your ID card",
+      s1: "You message me", s2: "I tell you what's needed", s3: "I handle the procedures", s4: "You get your document",
       contactLabel: "Contact",
       contactTitle: "Tell me your case",
       contactText: "I answer on WhatsApp, by phone or by email.",
@@ -444,6 +482,9 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
     },
     pt: {
       brandSub: "Despachante",
+      f1b: "41 anos", f1t: "de experiência em documentação", f2b: "Envio", f2t: "para qualquer país",
+      abLabel: "Do exterior", abTitle: "Se você está no exterior", abText: "Eu cuido disso por você e enviamos para qualquer país.",
+      ab1: "Certidões de nascimento e de casamento", ab2: "Certidões de solteiro", ab3: "Certidões de antecedentes apostiladas", ab4: "Apostilamento de documentos",
       eyebrow: "Assessoria para estrangeiros no Uruguai",
       h1: "Sua cédula uruguaia, sem burocracia.",
       lead: "Cuido de toda a documentação para você não precisar fazer.",
@@ -455,7 +496,7 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
       inc3: "Acompanhamento até você ter sua cédula",
       inc4: "Contato direto pelo WhatsApp ou telefone",
       howLabel: "Como funciona",
-      s1: "Você me escreve", s2: "Digo o que é preciso", s3: "Faço os trâmites", s4: "Você recebe sua cédula",
+      s1: "Você me escreve", s2: "Digo o que é preciso", s3: "Faço os trâmites", s4: "Você recebe seu documento",
       contactLabel: "Contato",
       contactTitle: "Conte seu caso",
       contactText: "Atendo pelo WhatsApp, por telefone ou por e-mail.",
@@ -470,9 +511,9 @@ footer { background: var(--navy); color: var(--navy-ink); padding-block: 36px; }
   };
 
   var MSG = {
-    es: "Hola Alberto, quiero consultar por la cédula de identidad.",
-    en: "Hi Alberto, I'd like to ask about the Uruguayan ID card.",
-    pt: "Olá Alberto, quero consultar sobre a cédula de identidade uruguaia."
+    es: "Hola Alberto, vi tu página web y quiero hacerte una consulta sobre un trámite.",
+    en: "Hi Alberto, I saw your website and would like to ask about a procedure.",
+    pt: "Olá Alberto, vi seu site e quero consultar sobre um trâmite."
   };
 
   var SUPPORTED = ["es", "en", "pt"];
